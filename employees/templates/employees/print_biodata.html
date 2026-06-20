@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Biodata</title>
+
+    <style>
+        @page {
+            size: A4;
+            margin: 15mm;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            color: #000;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 22px;
+            margin-bottom: 5px;
+        }
+
+        h2 {
+            background: #eeeeee;
+            padding: 6px;
+            font-size: 15px;
+            border: 1px solid #000;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 12px;
+        }
+
+        td, th {
+            border: 1px solid #000;
+            padding: 6px;
+            vertical-align: top;
+        }
+
+        .label {
+            width: 35%;
+            font-weight: bold;
+        }
+
+        .print-btn {
+            margin-bottom: 20px;
+        }
+
+        @media print {
+            .print-btn {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<button onclick="window.print()">
+    Print / Save as PDF
+</button>
+
+<a href="/download-biodata-pdf/{{ employee.employee_id }}/">
+    <button type="button">
+        Download PDF
+    </button>
+</a>
+<h1>Employee Biodata Form</h1>
+
+<h2>
+Personal Details | व्यक्तिगत विवरण | தனிப்பட்ட விவரங்கள் |
+వ్యక్తిగత వివరాలు | വ്യക്തിഗത വിവരങ്ങൾ
+</h2>
+
+<table>
+    <tr>
+        <td class="label">
+Employee Code<br>
+कर्मचारी कोड<br>
+பணியாளர் குறியீடு<br>
+ఉద్యోగి కోడ్<br>
+ജീവനക്കാരന്റെ കോഡ്
+</td>
+        <td>{{ employee.employee_code }}</td>
+    </tr>
+    <tr>
+        <td class="label">
+Employee Name<br>
+कर्मचारी का नाम<br>
+பணியாளர் பெயர்<br>
+ఉద్యోగి పేరు<br>
+ജീവനക്കാരന്റെ പേര്
+</td>
+        <td>{{ employee.employee_name }}</td>
+    </tr>
+    <tr>
+        <td class="label">
+ Father / Husband Name<br>
+    पिता / पति का नाम<br>
+    தந்தை / கணவர் பெயர்<br>
+    తండ్రి / భర్త పేరు<br>
+    അച്ഛൻ / ഭർത്താവിന്റെ പേര്
+</td>
+        <td>{{ employee.father_husband_name }}</td>
+    </tr>
+    <tr>
+        <td class="label">
+Date of Birth<br>
+जन्म तिथि<br>
+பிறந்த தேதி<br>
+పుట్టిన తేదీ<br>
+ജനന തീയതി
+</td>
+        <td>{{ employee.date_of_birth|default_if_none:"" }}</td>
+    </tr>
+    <tr>
+        <td class="label">
+Age<br>
+आयु<br>
+வயது<br>
+వయస్సు<br>
+പ്രായം
+</td>
+        <td>{{ employee.age }}</td>
+    </tr>
+    <tr>
+        <td class="label">
+Gender<br>
+लिंग<br>
+பாலினம்<br>
+లింగం<br>
+ലിംഗം
+</td>
+        <td>{{ employee.gender }}</td>
+    </tr>
+    <tr>
+      <td class="label">
+Marital Status<br>
+वैवाहिक स्थिति<br>
+திருமண நிலை<br>
+వైవాహిక స్థితి<br>
+വൈവാഹിക സ്ഥിതി
+</td>
+        <td>{{ employee.marital_status }}</td>
+    </tr>
+    <tr>
+        <td class="label">
+Mobile Number<br>
+मोबाइल नंबर<br>
+மொபைல் எண்<br>
+మొబైల్ నంబర్<br>
+മൊബൈൽ നമ്പർ
+</td>
+        <td>{{ employee.mobile_no }}</td>
+    </tr>
+</table>
+
+<h2>
+Address Details | पता विवरण | முகவரி விவரங்கள் |
+చిరునామా వివరాలు | വിലാസ വിവരങ്ങൾ
+</h2>
+
+<table>
+    <tr>
+        <td class="label">
+Permanent Address<br>
+स्थायी पता<br>
+நிரந்தர முகவரி<br>
+శాశ్వత చిరునామా<br>
+സ്ഥിര വിലാസം
+</td>
+        <td>{{ employee.permanent_address }}</td>
+    </tr>
+    <tr>
+        <td class="label">
+Permanent PIN Code<br>
+स्थायी पिन कोड<br>
+நிரந்தர அஞ்சல் குறியீடு<br>
+శాశ్వత పిన్ కోడ్<br>
+സ്ഥിര പിൻ കോഡ്
+</td>
+        <td>{{ employee.permanent_pin }}</td>
+    </tr>
+    <tr>
+        <td class="label">
+Present Address<br>
+वर्तमान पता<br>
+தற்போதைய முகவரி<br>
+ప్రస్తుత చిరునామా<br>
+നിലവിലെ വിലാസം
+</td>
+        <td>{{ employee.present_address }}</td>
+    </tr>
+    <tr>
+        <td class="label">
+Present PIN Code<br>
+वर्तमान पिन कोड<br>
+தற்போதைய அஞ்சல் குறியீடு<br>
+ప్రస్తుత పిన్ కోడ్<br>
+നിലവിലെ പിൻ കോഡ്
+</td>
+        <td>{{ employee.present_pin }}</td>
+    </tr>
+</table>
+
+<h2>
+Identity Details | पहचान विवरण | அடையாள விவரங்கள் |
+గుర్తింపు వివరాలు | തിരിച്ചറിയൽ വിവരങ്ങൾ
+</h2>
+
+<table>
+    <tr>
+        <td class="label">
+Aadhaar Number<br>
+आधार संख्या<br>
+ஆதார் எண்<br>
+ఆధార్ నంబర్<br>
+ആധാർ നമ്പർ
+</td>
+        <td>{{ employee.aadhaar_no }}</td>
+    </tr>
+    <tr>
+        <td class="label">
+UAN Number<br>
+यूएएन संख्या<br>
+யுஏஎன் எண்<br>
+యుఏఎన్ నంబర్<br>
+യുഎഎൻ നമ്പർ
+</td>
+        <td>{{ employee.uan_number }}</td>
+    </tr>
+    <tr>
+        <td class="label">
+ESI Number<br>
+ईएसआई संख्या<br>
+ஈஎஸ்ஐ எண்<br>
+ఈఎస్ఐ నంబర్<br>
+ഇഎസ്ഐ നമ്പർ
+</td>
+        <td>{{ employee.esi_number }}</td>
+    </tr>
+</table>
+
+<h2>
+Bank Details | बैंक विवरण | வங்கி விவரங்கள் |
+బ్యాంక్ వివరాలు | ബാങ്ക് വിവരങ്ങൾ
+</h2>
+
+<table>
+    <tr>
+        <td class="label">
+Bank Account Number<br>
+बैंक खाता संख्या<br>
+வங்கி கணக்கு எண்<br>
+బ్యాంక్ ఖాతా నంబర్<br>
+ബാങ്ക് അക്കൗണ്ട് നമ്പർ
+</td>
+        <td>{{ employee.bank_account_no }}</td>
+    </tr>
+    <tr>
+        <td class="label">
+Bank Name<br>
+बैंक का नाम<br>
+வங்கி பெயர்<br>
+బ్యాంక్ పేరు<br>
+ബാങ്കിന്റെ പേര്
+</td>
+        <td>{{ employee.bank_name }}</td>
+    </tr>
+    <tr>
+        <td class="label">
+IFSC Code<br>
+आईएफएससी कोड<br>
+ஐஎஃப்எஸ்சி குறியீடு<br>
+ఐఎఫ్‌ఎస్‌సి కోడ్<br>
+ഐഎഫ്‌എസ്‌സി കോഡ്
+</td>
+        <td>{{ employee.ifsc_code }}</td>
+    </tr>
+</table>
+
+<h2>
+Company Details | कंपनी विवरण | நிறுவன விவரங்கள் |
+కంపెనీ వివరాలు | കമ്പനിയുടെ വിവരങ്ങൾ
+</h2>
+
+<table>
+    <tr>
+        <td class="label">
+Department<br>
+विभाग<br>
+துறை<br>
+శాఖ<br>
+വിഭാഗം
+</td>
+        <td>{{ employee.department }}</td>
+    </tr>
+    <tr>
+        <td class="label">
+Designation<br>
+पदनाम<br>
+பதவி<br>
+హోదా<br>
+പദവി
+</td>
+        <td>{{ employee.designation }}</td>
+    </tr>
+    <tr>
+        <td class="label">
+Date of Joining<br>
+कार्यग्रहण तिथि<br>
+பணியில் சேர்ந்த தேதி<br>
+చేరిన తేదీ<br>
+ജോലിയിൽ ചേർന്ന തീയതി
+</td>
+        <td>{{ employee.date_of_joining }}</td>
+    </tr>
+    <tr>
+        <td class="label">
+Salary Per Day<br>
+प्रतिदिन वेतन<br>
+ஒருநாள் சம்பளம்<br>
+రోజువారీ జీతం<br>
+ദൈനംദിന ശമ്പളം
+</td>
+        <td>{{ employee.salary_per_day }}</td>
+    </tr>
+</table>
+
+<h2>
+Family Details | परिवार विवरण | குடும்ப விவரங்கள் |
+కుటుంబ వివరాలు | കുടുംബ വിവരങ്ങൾ
+</h2>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Relationship</th>
+        <th>Occupation</th>
+        <th>Age</th>
+    </tr>
+    {% for family in family_details %}
+    <tr>
+        <td>{{ family.member_name }}</td>
+        <td>{{ family.relationship }}</td>
+        <td>{{ family.occupation }}</td>
+        <td>{{ family.age }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h2>
+Education Details | शिक्षा विवरण | கல்வி விவரங்கள் |
+విద్య వివరాలు | വിദ്യാഭ്യാസ വിവരങ്ങൾ
+</h2>
+
+<table>
+    <tr>
+        <th>School / College</th>
+        <th>Course</th>
+        <th>Year of Passing</th>
+        <th>Special Course</th>
+    </tr>
+    {% for edu in education_details %}
+    <tr>
+        <td>{{ edu.school_college }}</td>
+        <td>{{ edu.course_name }}</td>
+        <td>{{ edu.year_of_passing }}</td>
+        <td>{{ edu.special_course }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h2>
+Experience Details | अनुभव विवरण | அனுபவ விவரங்கள் |
+అనుభవ వివరాలు | പ്രവൃത്തി പരിചയ വിവരങ്ങൾ
+</h2>
+
+<table>
+    <tr>
+        <th>Previous Concern</th>
+        <th>Nature of Work</th>
+        <th>Period</th>
+        <th>Total Experience</th>
+    </tr>
+    {% for exp in experience_details %}
+    <tr>
+        <td>{{ exp.previous_concern }}</td>
+        <td>{{ exp.nature_of_work }}</td>
+        <td>{{ exp.period_of_work }}</td>
+        <td>{{ exp.total_experience }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h2>
+Languages Known | ज्ञात भाषाएँ | தெரிந்த மொழிகள் |
+తెలిసిన భాషలు | അറിയുന്ന ഭാഷകൾ
+</h2>
+
+<table>
+    {% for lang in languages %}
+    <tr>
+        <td>{{ lang.language_name }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>

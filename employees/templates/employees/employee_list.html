@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employees</title>
+</head>
+
+<body>
+
+<h1>Employee Directory</h1>
+
+<form method="get">
+
+    <input
+        type="text"
+        name="search"
+        value="{{ search }}"
+        placeholder="Search employee"
+    >
+
+    <button type="submit">
+        Search
+    </button>
+
+</form>
+
+<hr>
+
+<table border="1">
+
+<tr>
+    <th>Code</th>
+    <th>Name</th>
+    <th>Department</th>
+    <th>Designation</th>
+</tr>
+
+{% for emp in employees %}
+
+<tr>
+
+<td>{{ emp.employee_code }}</td>
+
+<td>{{ emp.employee_name }}</td>
+
+<td>{{ emp.department }}</td>
+
+<td>{{ emp.designation }}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</body>
+</html>
